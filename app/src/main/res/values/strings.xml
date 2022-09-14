@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Fiap My Class</string>
+    <string name="title_class">Aula</string>
+    <string name="title_scheduled">Calendário</string>
+    <string name="title_profile">Perfil</string>
+    <string name="full_name">Nome completo</string>
+    <string name="edit_profile">Editar perfil</string>
+    <string name="email">Email</string>
+    <string name="phone">Telefone</string>
+    <string name="gender">Genero</string>
+    <string name="birth_date">Nascimento</string>
+</resources>
