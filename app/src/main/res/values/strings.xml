@@ -9,4 +9,12 @@
     <string name="phone">Telefone</string>
     <string name="gender">Genero</string>
     <string name="birth_date">Nascimento</string>
+    <string name="register">Cadastro</string>
+    <string name="password">Senha</string>
+    <string name="myClass">My Class</string>
+    <string-array name="gender">
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Outro</item>
+    </string-array>
 </resources>

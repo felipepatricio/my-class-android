@@ -1,5 +1,6 @@
 package com.example.fiap.myclass.ui.`class`
 
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

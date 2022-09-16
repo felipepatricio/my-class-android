@@ -1,13 +1,13 @@
 package com.example.fiap.myclass
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.widget.AutoCompleteTextView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.fiap.myclass.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,21 +16,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val btnRegister: Button = findViewById<Button>(R.id.btn_register_profile)
+        val edtFullName: EditText = findViewById<EditText>(R.id.edt_full_name)
+        val edtEmail: EditText = findViewById<EditText>(R.id.edt_email)
+        val edtPassword: EditText = findViewById<EditText>(R.id.edt_password)
 
-        val navView: BottomNavigationView = binding.navView
+        btnRegister.setOnClickListener(View.OnClickListener {
+            val registerPersist = this.getSharedPreferences("userData", Context.MODE_PRIVATE)
+            val edit = registerPersist.edit()
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_class, R.id.navigation_scheduled, R.id.navigation_profile
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+            edit.putString("full_name", edtFullName.text.toString())
+            edit.putString("email", edtEmail.text.toString())
+            edit.putString("password", edtPassword.text.toString())
+            edit.apply()
+
+            Toast.makeText(this, "Usuário registrado", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        })
     }
 }

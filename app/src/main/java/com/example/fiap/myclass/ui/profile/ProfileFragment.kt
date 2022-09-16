@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,10 +15,15 @@ import com.example.fiap.myclass.databinding.FragmentProfileBinding
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onResume() {
+        super.onResume()
+
+        val genderList = resources.getStringArray(R.array.gender)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, genderList)
+        binding.autoCompleteView.setAdapter(arrayAdapter)
+    }
 
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -31,11 +37,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val genderList = arrayOf("masculino", "feminino", "outro")
-        val autoCompleteTextView = inflater!!.inflate(R.id.edt_gender, container, false)
-//        val textView: TextView = binding.textNotifications
         profileViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
         }
         return root
     }
